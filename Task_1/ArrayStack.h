@@ -13,7 +13,7 @@
 
 #include <cassert>
 
-constexpr int baseCapacity = 8;
+extern constexpr int baseCapacity = 4;
 
 template <class T>
 class ArrayStack
@@ -128,6 +128,7 @@ T ArrayStack<T>::pop()
 template <class T>
 void ArrayStack<T>::resize(int newCapacity)
 {
+    assert(newCapacity >= 0 && "Resizing failed! Forbidden capacity value.");
     T *newData = new T [newCapacity];
     if (m_size <= newCapacity)
     {
