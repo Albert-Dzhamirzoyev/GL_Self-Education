@@ -1,19 +1,15 @@
-#ifndef ARRAYSTACK_H
-#define ARRAYSTACK_H
-
+// GL Self-Education Task 1
+//
 // This is a stack class template implementation based on a dynamic array.
 // The initial capacity of the stack and memory area size allocated on demand
 // is set by const value 'baseCapacity'.
 //
-// Next methods were implemented in class ArrayStack<T>:
+// The ArrayStack class automatically allocates memomy when there's no place to
+// perform regular push() operation.
 //
-// void create(int capacity)
-// void push(const T & data)
-// T pop()
-// int capacity()
-// int size()
-// void resize(int newSize)
-//
+
+#ifndef ARRAYSTACK_H
+#define ARRAYSTACK_H
 
 #include <cassert>
 
@@ -37,7 +33,7 @@ public:
     T pop();
     int capacity() const {return m_capacity;}
     int size() const {return m_size;}
-    void resize(int newSize);
+    void resize(int newCapacity);
 };
 
 template <class T>
@@ -123,11 +119,31 @@ void ArrayStack<T>::push(const T& data)
 template <class T>
 T ArrayStack<T>::pop()
 {
-    assert(m_size > 0 && "Popping failed! Stack is empty.");
+    assert(m_size > 0 && "Popping failed! Stack is already empty.");
 
     m_size--;
     return m_data[m_size];
 }
 
+template <class T>
+void ArrayStack<T>::resize(int newCapacity)
+{
+    T *newData = new T [newCapacity];
+    if (m_size <= newCapacity)
+    {
+        for (int i = 0; i < m_size; i++)
+            newData[i] = m_data[i];
+    }
+    else
+    {
+        int offset = m_size - newCapacity;
+        for (int i = offset; i < m_size; i++)
+            newData[i - offset] = m_data[i];
 
+        m_size = newCapacity;
+    }
+    m_capacity = newCapacity;
+    delete [] m_data;
+    m_data = newData;
+}
 #endif // ARRAYSTACK_H
