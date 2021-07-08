@@ -1,0 +1,202 @@
+﻿Testing memory allocation and reallocation functionality.
+
+Input_1:
+    push 1
+Proceeding_1:
+    calling method ArrayStack::push(1)
+    calling function stackReview(stack)
+Output_1:
+    push 1
+    Pushing 1 to Stack.
+
+    Stack capacity: 4
+    Stack size:     1
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_2:
+    push 2
+Proceeding_2:
+    calling method ArrayStack::push(2)
+    calling function stackReview(stack)
+Output_2:
+    push 2
+    Pushing 2 to Stack.
+
+    Stack capacity: 4
+    Stack size:     2
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_3:
+    push 3
+Proceeding_3:
+    calling method ArrayStack::push(3)
+    calling function stackReview(stack)
+Output_3:
+    Pushing 3 to Stack.
+
+    Stack capacity: 4
+    Stack size:     3
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_4:
+    push 4
+Proceeding_4:
+    calling method ArrayStack::push(4)
+    calling function stackReview(stack)
+Output_4:
+    push 4
+    Pushing 4 to Stack.
+
+    Stack capacity: 4
+    Stack size:     4
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_5:
+    push 5
+Proceeding_5:
+    calling method ArrayStack::push(5)
+    implicit memory reallocation (calling method ArrayStack::resize(stack capacity + c_baseCapacity))
+    calling function stackReview(stack)
+Output_5:
+    push 5
+    Pushing 5 to Stack.
+
+    Stack capacity: 8
+    Stack size:     5
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_6:
+    push 6
+Proceeding_6:
+    calling method ArrayStack::push(6)
+    calling function stackReview(stack)
+Output_6:
+    push 6
+    Pushing 6 to Stack.
+
+    Stack capacity: 8
+    Stack size:     6
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_7:
+    resize 3
+Proceeding_7:
+    calling method ArrayStack::resize(3)
+    (creating new array with capacity = 3,
+    copying last 3 elements from old array to the new,
+    deleting old array,
+    moving new array to the stack.)
+    calling function stackReview(stack)
+Output_7:
+    resize 3
+    Resizing stack...
+
+    Stack capacity: 3
+    Stack size:     3
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_8:
+    popall
+Proceeding_8:
+    calling method int ArrayStack::pop() in cycle:
+    while(stack.size() > 0)
+        stack.pop();
+    calling function stackReview(stack)
+Output_8:
+    popall
+    Get out from my Stack!
+    Stack: 6 5 4
+    Now stack is empty.
+
+    Stack capacity: 3
+    Stack size:     0
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_9:
+    resize 0
+Proceeding_9:
+    calling method ArrayStack::resize(0)
+    (implicit creating an empty stack with method ArrayStack::create(0))
+    calling function stackReview(stack)
+Output_9:
+    resize 0
+    Resizing stack...
+
+    Stack capacity: 0
+    Stack size:     0
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_10:
+    push 20
+Proceeding_10:
+    calling method ArrayStack::push(20)
+    (implicit memory allocation with method ArrayStack::resize(0 + c_baseCapacity))
+    calling function stackReview(stack)
+Output_10:
+    push 20
+    Pushing 20 to Stack.
+
+    Stack capacity: 4
+    Stack size:     1
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_11:
+    resize -30
+Proceeding_11:
+    condition (arg < 0) returns true
+    method ArrayStack::resize(-30) isn,t called
+Output_11:
+    Resizing failed! New size must be positive.
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_12:
+    erase
+Proceeding_12:
+    creating an empty stack with  method ArrayStack::create(c_baseCapacity)
+    calling function stackReview(stack)
+Output_12:
+    erase
+    Erasing stack...
+
+    Stack capacity: 4
+    Stack size:     0
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
+
+Input_13:
+    pop
+Proceeding_13:
+    condition (stack.size() > 0) returns false
+    method int ArrayStack::pop() isn't called
+    calling function stackReview(stack)
+Output_13:
+    pop
+    Stack is already empty.
+
+    Stack capacity: 4
+    Stack size:     0
+    --------------------------------------------------------------------
+
+    Input command (push [int number], pop, popall, resize [int size], erase, quit)
