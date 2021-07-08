@@ -13,7 +13,7 @@
 
 #include <cassert>
 
-extern constexpr int baseCapacity = 4;
+constexpr int c_baseCapacity = 4;
 
 template <class T>
 class ArrayStack
@@ -28,7 +28,7 @@ public:
     ArrayStack(const ArrayStack& copyMe);
     ArrayStack & operator=(const ArrayStack& assignMe);
 
-    void create (int newCapacity = baseCapacity);
+    void create (int newCapacity = c_baseCapacity);
     void push(const T & data);
     T pop();
     int capacity() const {return m_capacity;}
@@ -110,7 +110,7 @@ template <class T>
 void ArrayStack<T>::push(const T& data)
 {
     if (m_capacity - m_size < 1)
-        resize(m_capacity + baseCapacity);
+        resize(m_capacity + c_baseCapacity);
 
     m_data[m_size] = data;
     m_size++;
@@ -129,6 +129,13 @@ template <class T>
 void ArrayStack<T>::resize(int newCapacity)
 {
     assert(newCapacity >= 0 && "Resizing failed! Forbidden capacity value.");
+
+    if (newCapacity == 0)
+    {
+        create(0);
+        return;
+    }
+
     T *newData = new T [newCapacity];
     if (m_size <= newCapacity)
     {

@@ -1,22 +1,29 @@
 // GL Self-Education Task 1
 //
+//
+//
+//
+//
+//
+//
+
 #include <iostream>
 #include <string>
 
 #include "ArrayStack.h"
 
 void stackReview(ArrayStack<int>&);
-//extern constexpr int baseCapacity;
 
-int main(int argc, char *argv[])
+
+int main()
 {
     ArrayStack<int> stack;
     std::string     command;
     int             arg;
 
-    while(argc == 1)
+    while(true)
     {
-        std::cout << "\nInput command (push [int number], pop, popall, resize [int size], erase, quit)" << std::endl;
+        std::cout << "\nInput command (push [int number], pop, popall, resize [int size], erase, quit)\n";
         std::cin >> command;
         if (std::cin.fail())
         {
@@ -94,7 +101,7 @@ int main(int argc, char *argv[])
         if (command == "erase")
         {
             std::cout << "Erasing stack...\n";
-            stack.create(baseCapacity);
+            stack.create(c_baseCapacity);
             stackReview(stack);
         }
 
@@ -110,4 +117,5 @@ void stackReview(ArrayStack<int>& stack)
 {
     std::cout << "\nStack capacity:\t" << stack.capacity() << "\n" <<
                  "Stack size:\t" << stack.size() << "\n";
+    std::cout << "--------------------------------------------------------------------\n";
 }
