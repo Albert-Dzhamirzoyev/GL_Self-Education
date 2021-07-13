@@ -1,40 +1,76 @@
+// GL Self-Education Task 2
+//
+//
+//
+//
+//
+//
+//
+
 #include <iostream>
 #include <stdlib.h>
 
 #include "functional.h"
 
-#define DEBUG
 
 int main(int argc, char * argv[])
 {
     uint64_t  sum = 0;
     uint32_t fibo = 0;
-    int n = atoi(argv[1]);
+    char* p_number = nullptr;
+    int n;
     int i;
+    bool verbose = false;
 
-    if ((n <= 0) || (argc < 2))
+    if (argc == 1)
     {
-        std::cout << "Please try again.\n";
+        printUsageMessage();
+        return 0;
+    }
+    if (argc > 1)
+    {
+        if(argv[1][0] == '-')
+        {
+            if(argv[1][1] == 'v')
+                verbose = true;
+            else
+            {
+                printUsageMessage();
+                return 0;
+            }
+
+            p_number = argv[2];
+        }
+        else
+            p_number = argv[1];
+    }
+
+    n = atoi(p_number);
+    if ((n <= 0))
+    {
+        std::cout << "Input not allowed.\n";
+        printUsageMessage();
         return 0;
     }
 
-    try
+try
     {
         for (i = 0; i <= n; i++)
         {
              fibo = fibonacci(i);
              sum += fibo;
-#ifdef DEBUG
-          std::cout << "Fibonacci(" << i << ") = " << fibo <<
-                      ";\t\t Sum(Fibonacci(" << i << ") = " << sum << ";\n";
-#endif
+
+             if (verbose == false)
+                 continue;
+             std::cout << "Fibonacci(" << i << ") = " << fibo <<
+                      ";\t\t Sum(Fibonacci(" << i << ")) = " << sum << ";\n";
         }
     }
 catch(const char * exc)
     {
         std::cout << "An Exception Occured: " << exc <<
                      "\nNumber is too big.\n";
-        std::cout << "The sum of first " << (i - 1) << " Fibonacci numbers equals " << sum << "\n";
+        std::cout << "The sum of first " << (i - 1) << " Fibonacci number(s) equals " << sum << "\n";
         return -1;
     }
 

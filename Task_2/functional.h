@@ -5,4 +5,6 @@
 
 uint32_t fibonacci(int number);
 
+void printUsageMessage();
+
 #endif // FUNCTIONAL_H

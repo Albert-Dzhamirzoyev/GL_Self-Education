@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <iostream>
 
 uint32_t fibonacci(int number)
 {
@@ -10,4 +11,10 @@ uint32_t fibonacci(int number)
         throw "fibonacci_type_overflow";
 
     return fibonacci(number - 1) + fibonacci(number - 2);
+}
+
+void printUsageMessage()
+{
+    std::cout << "usage: [-v] <fibonacci number>\n\n" <<
+                 "Fibonacci numbers in the range from 1 to 47 are allowed.";
 }
