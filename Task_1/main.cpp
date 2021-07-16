@@ -1,11 +1,15 @@
 // GL Self-Education Task 1
 //
+// The stack is created for storage int-type elements.
+// 6 command line commands are implemented for interaction with the stack:
+// push [number]
+// pop
+// popall
+// resize [size]
+// erase
+// quit
 //
-//
-//
-//
-//
-//
+// User input validation also implemented
 
 #include <iostream>
 #include <string>
@@ -17,6 +21,7 @@ void stackReview(ArrayStack<int>&);
 
 int main()
 {
+
     ArrayStack<int> stack;
     std::string     command;
     int             arg;

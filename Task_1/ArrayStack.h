@@ -36,16 +36,20 @@ public:
     void resize(int newCapacity);
 };
 
+// Creates an empty stack with zero size and capacity
+// (memory isn't allocated)
 template <class T>
 ArrayStack<T>::ArrayStack():
     m_size(0), m_capacity(0), m_data(nullptr) {}
 
+// Deleting and releasing memory (destructor)
 template <class T>
 ArrayStack<T>::~ArrayStack()
 {
     delete [] m_data;
 }
 
+// Deep copying constructor
 template<class T>
 ArrayStack<T>::ArrayStack(const ArrayStack& copyMe)
 {
@@ -62,6 +66,7 @@ ArrayStack<T>::ArrayStack(const ArrayStack& copyMe)
         m_data = nullptr;
 }
 
+// Overloaded operator '=' for deep copying
 template <class T>
 ArrayStack<T>& ArrayStack<T>::operator=(const ArrayStack& assignMe)
 {
@@ -85,6 +90,9 @@ ArrayStack<T>& ArrayStack<T>::operator=(const ArrayStack& assignMe)
     return *this;
 }
 
+//Creates a new stack with capacity = newCapacity.
+// If the stack wasn't  originally empty all content is deleted and
+// memory is reallocated on a new one
 template <class T>
 void ArrayStack<T>::create(int newCapacity)
 {
@@ -106,6 +114,9 @@ void ArrayStack<T>::create(int newCapacity)
     }
 }
 
+// Pushing element to the stack
+// If the stack capacity is not enough for pushing regular element
+// it increases its capacity with method resize()
 template <class T>
 void ArrayStack<T>::push(const T& data)
 {
@@ -116,6 +127,8 @@ void ArrayStack<T>::push(const T& data)
     m_size++;
 }
 
+// Popping element from the stack
+// Assertion failed if the stack is already empty
 template <class T>
 T ArrayStack<T>::pop()
 {
@@ -125,12 +138,14 @@ T ArrayStack<T>::pop()
     return m_data[m_size];
 }
 
+// Increasing-decreasing capacity of the stack
+// in accordance to the value 'newCapacity'. if
+// newCapacity is lower than current size the stack deletes older elements
+// the "freshest" remain
 template <class T>
 void ArrayStack<T>::resize(int newCapacity)
 {
-    assert(newCapacity >= 0 && "Resizing failed! Forbidden capacity value.");
-
-    if (newCapacity == 0)
+    if (newCapacity <= 0)
     {
         create(0);
         return;
