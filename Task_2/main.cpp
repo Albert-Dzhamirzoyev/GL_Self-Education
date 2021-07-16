@@ -1,9 +1,9 @@
 // GL Self-Education Task 2
 //
-//
-//
-//
-//
+// fibonacci(n) recursively evaluates a Fibonacci number Fn
+// n values from 1 to 47 are allowed, if (n > 47) an exception occured
+// "fibonacci_type_overflow" (47th is the biggest Fibonacci number which
+// can be stored at uint32_t type)
 //
 //
 
