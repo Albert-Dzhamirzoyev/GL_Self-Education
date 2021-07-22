@@ -139,7 +139,7 @@ T ArrayStack<T>::pop()
 }
 
 // Increasing-decreasing capacity of the stack
-// in accordance to the value 'newCapacity'. if
+// in accordance to the value 'newCapacity'. If
 // newCapacity is lower than current size the stack deletes older elements
 // the "freshest" remain
 template <class T>
