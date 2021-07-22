@@ -18,7 +18,7 @@ enum StorageStates
 struct FileNameStorage
 {
     DIR * p_currentDirStream = NULL;
-    char * p_currentDir;
+    char * p_currentDir = nullptr;
     std::vector<std::string> files;
     StorageStates state = NOT_INVOLVED_STATE;
 };
