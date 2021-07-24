@@ -20,6 +20,7 @@ struct FileNameStorage
     DIR * p_currentDirStream = NULL;
     char * p_currentDir = nullptr;
     std::vector<std::string> files;
+    int filesCount = 0;
     StorageStates state = NOT_INVOLVED_STATE;
 };
 

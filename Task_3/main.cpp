@@ -2,14 +2,15 @@
 //
 // Program uses global mutual storage (struct FileNameStorage g_storage) for
 // keeping inserted path-string (char* p_currentDir), storage state (enum StorageStates),
-// container with counted file names (vector files) and inserted directory stream object (DIR).
+// container with counted file names (vector 'files'), number of counted files ('filesCount')
+// and inserted directory stream object (DIR).
 //
 // Two threads (thread1, thread2 with functions iterateFiles() and printPaths())
 // use this storage alternately with mutex protection (g_storage_mutex).
 //
 // Thread 1 reads a file name from inserted directory and saves it to storage.
 // Thread 2 extracts a file name from storage and prints its full path.
-// Both threads run periodically until storage will processed (vector files becomes empty).
+// Both threads run periodically until storage will processed (vector 'files' becomes empty).
 //
 #include <pthread.h>
 #include <sys/types.h>
@@ -76,6 +77,8 @@ int main(int argc, char *argv[])
         pthread_join(thread1, NULL);
         pthread_join(thread2, NULL);
     }
+
+    std::cout << "\nTotal file entries count: " << g_storage.filesCount << "\n";
 
     closedir(g_storage.p_currentDirStream);
 

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 
 #include <pthread.h>
 #include <sys/types.h>
@@ -14,7 +15,7 @@ void printUsageMessage()
 {
     std::cout << "usage: dircont [-v] <path>\n\n" <<
                  "Program shows paths to every file in <path> directory.\n" <<
-                 "Use option -v to see details of threads operation.";
+                 "Use option -v to see details of threads operation.\n";
 }
 
 void * iterateFiles(void * p_arg)
@@ -30,6 +31,7 @@ void * iterateFiles(void * p_arg)
     {
         g_storage.state = IS_FILLING_STATE;
         g_storage.files.push_back(std::string(p_fileEntry->d_name));
+        g_storage.filesCount++;
 
         if (g_verbose == true)
             std::cout << "\t\tFile entry read: " << p_fileEntry->d_name << "\n";
@@ -42,6 +44,7 @@ void * iterateFiles(void * p_arg)
     }
 
     pthread_mutex_unlock(&g_storage_mutex);
+    return NULL;
 }
 
 void * printPaths(void * p_arg)
@@ -63,7 +66,9 @@ void * printPaths(void * p_arg)
     if (((g_storage.files.size()) > 0) &&
         (g_storage.state != NOT_INVOLVED_STATE))
     {
-        std::cout << "\t\t" << g_storage.p_currentDir << "/" << g_storage.files.back() << "\n";
+        std::cout << "\t\t" << g_storage.p_currentDir <<
+                     ((strcmp(g_storage.p_currentDir, "/")) ? "/" : "") <<
+                     g_storage.files.back() << "\n";
         g_storage.files.pop_back();
     }
 
@@ -73,4 +78,5 @@ void * printPaths(void * p_arg)
 
 
     pthread_mutex_unlock(&g_storage_mutex);
+    return NULL;
 }
