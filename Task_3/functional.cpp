@@ -13,7 +13,7 @@ extern bool             g_verbose;
 
 void printUsageMessage()
 {
-    std::cout << "usage: dircont [-v] <path>\n\n" <<
+    std::cout << "usage: ./dircont [-v] <path>\n\n" <<
                  "Program shows paths to every file in <path> directory.\n" <<
                  "Use option -v to see details of threads operation.\n";
 }
