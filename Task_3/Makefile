@@ -1,14 +1,15 @@
 CC=g++
-CFLAGS= -Wall
+CFLAGS= -Wall -c
+LFLAGS= -lpthread -o
 SOURCES=main.cpp functional.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 TARGET=dircont
 
 $(TARGET): $(OBJECTS)
-	$(CC) $(FLAGS) -o $(TARGET) $(OBJECTS)
+	$(CC) $(LFLAGS) $(TARGET) $(OBJECTS)
 
 $(OBJECTS): $(SOURCES)
-	$(CC) $(CFLAGS) -c $(SOURCES)
+	$(CC) $(CFLAGS) $(SOURCES)
 
 clean:
 	rm -f *.o $(TARGET)
