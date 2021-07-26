@@ -15,8 +15,8 @@ uint32_t fibonacci(int number)
 
 void printUsageMessage()
 {
-    std::cout << "usage: fibo [-v] <fibonacci number>\n\n" <<
-                 "Fibonacci numbers in the range from 1 to 47 are allowed.";
+    std::cout << "usage: ./fibo [-v] <fibonacci number>\n\n" <<
+                 "Fibonacci numbers in the range from 1 to 47 are allowed.\n";
 }
 
 
