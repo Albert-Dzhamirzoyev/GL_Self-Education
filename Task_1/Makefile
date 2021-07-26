@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= -Wall -g
+CFLAGS= -Wall
 SOURCES=main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 TARGET=stack
