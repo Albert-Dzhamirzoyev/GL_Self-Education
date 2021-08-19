@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= -Wall -c
+CFLAGS= -Wall -c -std=c++11
 LFLAGS= -o
 SOURCES=main.cpp functional.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
